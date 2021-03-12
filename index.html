@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<title>Brian said what</title>
+ 	<link rel=icon href=favicon.png>
+	 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<style>
+				html, body { height: 100%; }
+				body { margin: 0; font-size: 10em;}
+				div.container { display: flex; flex-direction:column; align-items: center; justify-content: center;height: 100%; }
+				div { display: flex; flex-direction: row; align-items: center; justify-content: center; width: 100%; text-align: center;}
+				img { width: 70%; }
+				.input{position: absolute; top: 0px;}
+			</style>
+		</head>
+	<body>
+		<div class="input"><input id="meme" value="What Did Brian Just Say?"></div>
+		<div class="container">
+			<div class="meme1" id="meme1"></div>
+			<div class="cent" onclick="loadMeme()"><img class="meme" src=meme.png></div>
+			<div class="meme2" id="meme2"></div>
+		</div>
+		<script>
+			var m1 = document.querySelector('#meme1');
+			var m2 = document.querySelector('#meme2');
+			$("#meme").keyup(function(){SayIt()});
+			function SayIt() {
+				var words = $("#meme").val();
+				var arrofwords = words.split(" ");
+				var middle = arrofwords.length / 2;
+				arrofwords.splice(middle,0,"|||");
+				var output = arrofwords.join(" ");
+				var split = output.split("|||");
+				console.log(split[0]);
+				$("#meme1").text(split[0]);
+				$("#meme2").text(split[1]);
+			}
+			function loadMeme(){
+				numberOfMemes = 6;
+				$("img.meme").attr("src","meme"+Math.ceil(Math.random()*numberOfMemes)+".png");
+			}
+
+
+			SayIt();
+			loadMeme();
+		</script>
+	</body>
+</html>
